@@ -1,0 +1,17 @@
+.ui-widget {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+#tabs {
+	float: left;
+	width: 99%;
+}
+
+#tabs-1, #tabs-2, #tabs-3 {
+	border: 1px solid #ccc;
+	margin: 20px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>jQuery UI Autocomplete - Default functionality</title>
+		<link type="text/css" rel="stylesheet" href="static/css/main.css" />
+		<script type="text/javascript" src="/static/js/jquery.js"><!--//code.jquery.com/jquery-1.9.1.js-->
+		</script>
+		<script type="text/javascript" src="/static/js/jquery-ui.js">
+		</script>
+		<!--
+		<script type="text/javascript" src="/static/jquery-ui-2.js">
+		</script>-->
+		<script type="text/javascript" src="/static/js/script.js">
+		</script>
+		<!--<link rel="stylesheet" type="text/css" href="/resources/demos/style.css" />-->
+		<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui.css" />
+		<script type="text/javascript">
+			$(function(){
+				var availableTags = ["Shriram", "Social", "Facebook", "Twitter",
+					"LinkedIn", "Friend", "Friends", "However", "Take", "Care",
+					"Cool", "Nice", "Tweet", "Post", "Update", "Group", "Link",
+					"Message", "Sure", "are", "you", "?", "@",];
+				$("#tags").autocomplete({ 
+					source: availableTags
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+
+		<!-- Autocomplete -->
+		<div class="ui-widget">
+			<label for="tags">Tags: </label>
+			<input id="tags" />
+		</div>
+
+		<div class="clear"></div>
+
+		{% load singly %}
+
+		<!-- Build a tabbed interface -->
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Facebook</a></li>
+				<li><a href="#tabs-2">LinkedIn</a></li>
+				<li><a href="#tabs-3">Twitter</a></li>
+			</ul>
+
+			{% if user.is_authenticated %}
+				<div id="tabs-1">
+					<!--
+				{% for message in fbmessages %}
+					{{ message }} <br />
+					by {{ message.user }} on {{ message.created_at }}
+				{% endfor %}-->
+				{{ user.username }} <br />
+				{{ user.location }}	<br />
+				{{ user.bio }}	<br />
+				</div>
+			{% else %}
+				<a href="{% singly_login_url 'facebook' %}">Login With Facebook</a>
+			{% endif %}
+
+			{% if user.is_authenticated %}
+				<div id="tabs-2">
+				<!--
+				{% for message in twmessages %}
+					{{ message }} <br />
+					by {{ message.user }} on {{ message.created_at }}
+				{% endfor %}
+				-->
+				{{ user.username }} <br />
+				{{ user.location }}	<br />
+				{{ user.bio }}	<br />
+				</div>
+			{% else %}
+				<a href="{% singly_login_url 'twitter' %}">Login With Twitter</a>
+			{% endif %}
+
+			{% if user.is_authenticated %}
+				<div id="tabs-3">
+				<!--
+				{% for message in lnmessages %}
+					{{ message }} <br />
+					by {{ message.user }} on {{ message.created_at }}
+				{% endfor %}
+				-->
+				{{ user.username }} <br />
+				{{ user.location }}	<br />
+				{{ user.bio }}	<br />
+				</div>
+			{% else %}
+				<a href="{% singly_login_url 'linkedin' %}">Login With LinkedIn</a>
+			{% endif %}
+
+		</div>
+
+	</body>
+
+</html>
